@@ -49,3 +49,14 @@ Botni ishga tushurish uchun:
 
 ```bash
 python bot.py
+
+
+- **filters/**:
+  - `admin.py`: Adminlar uchun maxsus funksiyalarni filtrlaydigan kodlar joylashgan.
+  - `check_sub_channel.py`: Foydalanuvchining kerakli kanalga obuna bo‘lganligini tekshiruvchi kodlar.
+
+- **keyboard_buttons/**:
+  - `admin_keyboard.py`: Bot interfeysida adminlar uchun klaviatura tugmalari sozlanadi.
+
+- **menucommands/**:
+  - `set_bot_commands.py`: Telegram bot menyusidagi buyruqlarni o'rnatish uchun skript.
