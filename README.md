@@ -1,8 +1,7 @@
 # Aiogram 3 New Template (SQLite db)
 
-``````Matnli xabarlarni ovozli xabarlarga aylantirish```
-```Ovozli xabarlar yuqori sifatli TTS (Text-To-Speech) texnologiyasi yordamida yaratiladi```
-```Foydalanuvchilarning ovozli xabarlarini saqlash va ulashish imkoniyati``````
+```Telegram TTS Bot```
+Bu Telegram bot foydalanuvchilarning matnli xabarlarini ovozli xabarlarga aylantiradi. Siz ushbu botni Telegram orqali matnni ovozli xabarga aylantirish uchun ishlatishingiz mumkin.
 
 ### 1. Create virtual environment and install packages
 Windows
