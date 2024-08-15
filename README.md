@@ -43,12 +43,6 @@ Bu Telegram bot foydalanuvchilarning matnli xabarlarini ovozli xabarlarga aylant
     BOT_TOKEN=your-telegram-bot-token
     ```
 
-## Ishga tushirish
-
-Botni ishga tushurish uchun:
-
-```bash
-python bot.py
 
 
 - **filters/**:
@@ -60,3 +54,12 @@ python bot.py
 
 - **menucommands/**:
   - `set_bot_commands.py`: Telegram bot menyusidagi buyruqlarni o'rnatish uchun skript.
+ 
+
+## Ishga tushirish
+
+Botni ishga tushurish uchun:
+
+```bash
+python bot.py
+
