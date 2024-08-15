@@ -19,7 +19,7 @@ Bu Telegram bot foydalanuvchilarning matnli xabarlarini ovozli xabarlarga aylant
 1. GitHub repozitoriyasini klonlang:
 
     ```bash
-    git clone https://github.com/yourusername/your-repository.git
+    git clone https://github.com/Nurbek333/ttsuz_bot.git
     cd your-repository
     ```
 
