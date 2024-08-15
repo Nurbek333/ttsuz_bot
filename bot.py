@@ -5,7 +5,7 @@ import time
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart, Command
-from aiogram.types import Message, InlineKeyboardButton,FSInputFile
+from aiogram.types import Message, InlineKeyboardButton, FSInputFile
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -16,8 +16,8 @@ from filters.admin import IsBotAdminFilter
 from filters.check_sub_channel import IsCheckSubChannels
 from states.reklama import Adverts
 from keyboard_buttons import admin_keyboard
-from gtts import gTTS  # Yangi qo'shildi
-import os  # Yangi qo'shildi
+from gtts import gTTS
+import os
 
 ADMINS = config.ADMINS
 TOKEN = config.BOT_TOKEN
@@ -30,7 +30,7 @@ async def start_command(message: Message):
     full_name = message.from_user.full_name
     telegram_id = message.from_user.id
     try:
-        db.add_user(full_name=full_name, telegram_id=telegram_id)  # Foydalanuvchi bazaga qo'shildi
+        db.add_user(full_name=full_name, telegram_id=telegram_id)  # Add user to the database
         await message.answer(text="""Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
 
 2. **/about** - Bot haqidagi to'liq ma'lumot va yaratuvchilar haqida.
@@ -38,12 +38,12 @@ async def start_command(message: Message):
 3. **/help** - Botning qanday ishlashini tushuntiruvchi yordam xabari.
 
 **Qanday foydalanish kerak:**
-- Ovozli xabarlarni yuborish uchun `/convert` komandasini matn bilan birga yuboring.
+- Ovozli xabarlarni yuborish uchun botga text jo'nating bot siz ovozli habarni tashlaydi.
 
 Agar qo'shimcha savollar yoki yordam kerak bo'lsa, iltimos, [email:\nnurbekuktamov333@gmail.com/telegram username:\n@me_nurbek] orqali biz bilan bog'laning!
 
 Botni ishlatganingiz uchun rahmat! 🎉
-""")
+""", parse_mode=ParseMode.HTML)
     except Exception as e:
         # logging.exception("Foydalanuvchini qo'shishda xatolik yuz berdi", e)
         await message.answer(text="""Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
@@ -58,7 +58,7 @@ Botni ishlatganingiz uchun rahmat! 🎉
 Agar qo'shimcha savollar yoki yordam kerak bo'lsa, iltimos, [email:\nnurbekuktamov333@gmail.com/telegram username:\n@me_nurbek] orqali biz bilan bog'laning!
 
 Botni ishlatganingiz uchun rahmat! 🎉
-""")
+""", parse_mode=ParseMode.HTML)
 
 @dp.message(IsCheckSubChannels())
 async def kanalga_obuna(message: Message):
@@ -88,7 +88,7 @@ Agar qo'shimcha yordam kerak bo'lsa, iltimos, [email/telegram username] orqali b
 - Muammo yoki savollar bo'lsa, yordam uchun [email/telegram username] bilan bog'laning.
 
 Rahmat, [Bot nomi]!
-""")
+""", parse_mode=ParseMode.HTML)
 
 @dp.message(Command("about"))
 async def about_commands(message: Message):
@@ -111,7 +111,7 @@ async def about_commands(message: Message):
 - **Websayt:** [nurbek333.pythonanywhere.com]
 
 Rahmat va botni ishlatganingiz uchun rahmat! 🎉
-""")
+""", parse_mode=ParseMode.HTML)
 
 @dp.message(Command("admin"), IsBotAdminFilter(ADMINS))
 async def is_admin(message: Message):
@@ -121,12 +121,12 @@ async def is_admin(message: Message):
 async def users_count(message: Message):
     counts = db.count_users()
     text = f"Botimizda {counts[0]} ta foydalanuvchi bor"
-    await message.answer(text=text)
+    await message.answer(text=text, parse_mode=ParseMode.HTML)
 
 @dp.message(F.text == "Reklama yuborish", IsBotAdminFilter(ADMINS))
 async def advert_dp(message: Message, state: FSMContext):
     await state.set_state(Adverts.adverts)
-    await message.answer(text="Reklama yuborishingiz mumkin!")
+    await message.answer(text="Reklama yuborishingiz mumkin!", parse_mode=ParseMode.HTML)
 
 @dp.message(Adverts.adverts)
 async def send_advert(message: Message, state: FSMContext):
@@ -142,34 +142,21 @@ async def send_advert(message: Message, state: FSMContext):
             logging.exception(f"Foydalanuvchiga reklama yuborishda xatolik: {user[0]}", e)
         time.sleep(0.01)
     
-    await message.answer(f"Reklama {count} ta foydalanuvchiga yuborildi")
+    await message.answer(f"Reklama {count} ta foydalanuvchiga yuborildi", parse_mode=ParseMode.HTML)
     await state.clear()
 
-
-# @dp.message(F.text)
-# async def convert_text_to_speech(message: Message):
-#     text = message.text
-#     tts = gTTS(text=text, lang='en') 
-#     tts.save('output.mp3')
-    
-#     with open('output.mp3', 'rb') as audio:
-#         await message.reply_voice(voice=audio)
-
-#     os.remove('output.mp3')
-    
 import io
 @dp.message(F.text)
 async def convert_text_to_speech(message: types.Message):
     text = message.text
     tts = gTTS(text=text, lang='en')
-    tts.save('output.mp3')
     file_path = 'output.mp3'
     tts.save(file_path)
 
     with open(file_path, 'rb') as audio:
-            await message.reply_voice(voice=FSInputFile(file_path,filename="tts.mp3"))
+        await message.reply_voice(voice=FSInputFile(file_path, filename="tts.mp3"))
 
-
+    os.remove(file_path)
 
 @dp.startup()
 async def on_startup_notify(bot: Bot):
@@ -193,7 +180,7 @@ def setup_middlewares(dispatcher: Dispatcher, bot: Bot) -> None:
 
 async def main() -> None:
     global bot, db
-    bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+    bot = Bot(TOKEN)
     db = Database(path_to_db="main.db")
     await set_default_commands(bot)
     setup_middlewares(dispatcher=dp, bot=bot)
