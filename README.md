@@ -1,5 +1,9 @@
 # Aiogram 3 New Template (SQLite db)
 
+Matnli xabarlarni ovozli xabarlarga aylantirish
+Ovozli xabarlar yuqori sifatli TTS (Text-To-Speech) texnologiyasi yordamida yaratiladi
+Foydalanuvchilarning ovozli xabarlarini saqlash va ulashish imkoniyati
+
 ### 1. Create virtual environment and install packages
 Windows
 ```shell
