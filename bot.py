@@ -31,34 +31,36 @@ async def start_command(message: Message):
     telegram_id = message.from_user.id
     try:
         db.add_user(full_name=full_name, telegram_id=telegram_id)  # Add user to the database
-        await message.answer(text="""Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
+        await message.answer(text="""🗣️ **Salom!** Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
 
-2. **/about** - Bot haqidagi to'liq ma'lumot va yaratuvchilar haqida.
-   
-3. **/help** - Botning qanday ishlashini tushuntiruvchi yordam xabari.
+✨ **/about** - Bot haqidagi to'liq ma'lumot va yaratuvchilar haqida.
+
+❓ **/help** - Botning qanday ishlashini tushuntiruvchi yordam xabari.
 
 **Qanday foydalanish kerak:**
-- Ovozli xabarlarni yuborish uchun botga text jo'nating bot siz ovozli habarni tashlaydi.
+- 📥 Ovozli xabarlarni yuborish uchun botga matn jo'nating va bot sizga ovozli xabarni yuboradi.
 
 Agar qo'shimcha savollar yoki yordam kerak bo'lsa, iltimos, [email:\nnurbekuktamov333@gmail.com/telegram username:\n@me_nurbek] orqali biz bilan bog'laning!
 
-Botni ishlatganingiz uchun rahmat! 🎉
-""", parse_mode=ParseMode.HTML)
+🎉 Botni ishlatganingiz uchun rahmat!
+
+""" ,parse_mode="Markdown")
     except Exception as e:
         # logging.exception("Foydalanuvchini qo'shishda xatolik yuz berdi", e)
-        await message.answer(text="""Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
+        await message.answer(text="""🗣️ **Salom!** Men [Bot nomi] botiman, sizga quyidagi funksiyalarni taqdim etaman:
 
-2. **/about** - Bot haqidagi to'liq ma'lumot va yaratuvchilar haqida.
-   
-3. **/help** - Botning qanday ishlashini tushuntiruvchi yordam xabari.
+✨ **/about** - Bot haqidagi to'liq ma'lumot va yaratuvchilar haqida.
+
+❓ **/help** - Botning qanday ishlashini tushuntiruvchi yordam xabari.
 
 **Qanday foydalanish kerak:**
-- Ovozli xabarlarni yuborish uchun `/convert` komandasini matn bilan birga yuboring.
+- 📥 Ovozli xabarlarni yuborish uchun botga matn jo'nating va bot sizga ovozli xabarni yuboradi.
 
 Agar qo'shimcha savollar yoki yordam kerak bo'lsa, iltimos, [email:\nnurbekuktamov333@gmail.com/telegram username:\n@me_nurbek] orqali biz bilan bog'laning!
 
-Botni ishlatganingiz uchun rahmat! 🎉
-""", parse_mode=ParseMode.HTML)
+🎉 Botni ishlatganingiz uchun rahmat!
+
+""" ,parse_mode="Markdown")
 
 @dp.message(IsCheckSubChannels())
 async def kanalga_obuna(message: Message):
@@ -73,45 +75,45 @@ async def kanalga_obuna(message: Message):
 
 @dp.message(Command("help"))
 async def help_commands(message: Message):
-    await message.answer("""👋 Salom! Men [Bot nomi] botiman. Sizga quyidagi funksiyalarni taqdim etaman:
+    await message.answer(text="""👋 **Salom!** Men [Bot nomi] botiman. Sizga quyidagi funksiyalarni taqdim etaman:
 
 1. **/start** - Botni ishga tushiradi va siz bilan salomlashadi.
 2. **/help** - Botning qanday ishlashini tushuntiruvchi yordam.
-3. **/about** - Bot yaratuvchilari va bot haqidagi tuliq malumotlar.
+3. **/about** - Bot yaratuvchilari va bot haqidagi to'liq ma'lumotlar.
 
 📌 **Qanday foydalanish kerak:**
 - Matn yuboring va men uni ovozli xabarga aylantiraman.
 
-Agar qo'shimcha yordam kerak bo'lsa, iltimos, [email/telegram username] orqali biz bilan bog'laning!
+Agar qo'shimcha yordam kerak bo'lsa, iltimos, [email](mailto:nurbekuktamov333@gmail.com) yoki [telegram username](https://t.me/me_nurbek) orqali biz bilan bog'laning!
 
 🔧 **Yordam uchun:** 
-- Muammo yoki savollar bo'lsa, yordam uchun [email/telegram username] bilan bog'laning.
+- Muammo yoki savollar bo'lsa, yordam uchun [email](mailto:nurbekuktamov333@gmail.com) yoki [telegram username](https://t.me/me_nurbek) bilan bog'laning.
 
-Rahmat, [Bot nomi]!
-""", parse_mode=ParseMode.HTML)
+Rahmat, [Bot nomi]! 🎉
+""", parse_mode="Markdown")
 
 @dp.message(Command("about"))
 async def about_commands(message: Message):
-    await message.answer("""📢 **/about** - Bot Haqida Ma'lumot
+    await message.answer(text="""📢 **/about** - Bot Haqida Ma'lumot
 
 👋 **Salom! Men [Bot nomi] botiman.**
 
-**Bot Yaratuvchilari:**
+🔹 **Bot Yaratuvchilari:**
 - **Yaratuvchi:** Nurbek Uktamov
 - **Tajriba:** Backend dasturchi, Django bo'yicha mutaxassis
 - **Maqsad:** Ushbu bot sizga matnni ovozga aylantirish va boshqa funktsiyalarni taqdim etish uchun yaratilgan.
 
-**Bot Haqida:**
+🔹 **Bot Haqida:**
 - **Maqsad:** [Bot nomi] bot sizning matnlaringizni ovozli xabarlarga aylantiradi. Har qanday matnni yuboring va men uni sizga ovozli xabar sifatida qaytaraman.
 - **Texnologiyalar:** Bot Python dasturlash tili yordamida yaratildi va `aiogram` kutubxonasi, `gTTS` (Google Text-to-Speech) kabi texnologiyalarni ishlatadi.
 - **Qanday Ishlaydi:** Siz matn yuborganingizda, bot uni ovozga aylantiradi va ovozli xabar sifatida yuboradi.
 
-**Agar Qo'shimcha Ma'lumot yoki Yordam Kerak Bo'lsa:**
-- **Kontakt:** [nurbekuktamov@gmail.com]
-- **Websayt:** [nurbek333.pythonanywhere.com]
+🔹 **Agar Qo'shimcha Ma'lumot yoki Yordam Kerak Bo'lsa:**
+- **Kontakt:** [nurbekuktamov@gmail.com](mailto:nurbekuktamov@gmail.com)
+- **Websayt:** [nurbek333.pythonanywhere.com](http://nurbek333.pythonanywhere.com)
 
 Rahmat va botni ishlatganingiz uchun rahmat! 🎉
-""", parse_mode=ParseMode.HTML)
+""", parse_mode="Markdown")
 
 @dp.message(Command("admin"), IsBotAdminFilter(ADMINS))
 async def is_admin(message: Message):
