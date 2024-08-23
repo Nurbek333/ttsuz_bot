@@ -148,14 +148,25 @@ async def send_advert(message: Message, state: FSMContext):
 import io
 @dp.message(F.text)
 async def convert_text_to_speech(message: types.Message):
+    # Send a waiting message
+    waiting_msg = await message.reply("Iltimos, kuting... audio tayyorlanyapti.")
+    
     text = message.text
     tts = gTTS(text=text, lang='en')
     file_path = 'output.mp3'
     tts.save(file_path)
 
+    # Delay for 3 seconds
+    await asyncio.sleep(3)
+
+    # Remove the waiting message
+    await waiting_msg.delete()
+
+    # Send the audio file
     with open(file_path, 'rb') as audio:
         await message.reply_voice(voice=FSInputFile(file_path, filename="tts.mp3"))
 
+    # Remove the audio file from the filesystem
     os.remove(file_path)
 
 @dp.startup()
