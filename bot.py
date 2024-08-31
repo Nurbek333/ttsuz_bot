@@ -115,7 +115,7 @@ async def about_commands(message: Message):
 
 <b>Bot Yaratuvchilari:</b>
 <b>Yaratuvchi:</b> Nurbek Uktamov\n
-<b>Tajriba:</b> Backend dasturchi, Django bo'yicha mutaxassis\n
+<b>Tajriba:</b> Backend dasturchi, Django bo'yicha mutaxassis
 <b>Maqsad:</b> Sizga matnni ovozga aylantirish va boshqa funksiyalarni taqdim etish.
 
 <b>Bot Haqida:</b>
