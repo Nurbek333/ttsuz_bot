@@ -41,7 +41,7 @@ async def start_command(message: Message):
         db.add_user(full_name=full_name, telegram_id=telegram_id)  # Add user to the database
         await message.answer(text="""<b>👋 Assalomu alaykum!</b>
 
-<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan [Bot nomi] botiman.</b>
+<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan botman.</b>
 
 <b>Botning funksiyalari:</b>
 1. <b>/about</b> - Bot haqida to'liq ma'lumot va yaratuvchilar haqida.
@@ -59,7 +59,7 @@ async def start_command(message: Message):
         # logging.exception("Foydalanuvchini qo'shishda xatolik yuz berdi", e)
         await message.answer(text="""<b>👋 Assalomu alaykum!</b>
 
-<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan [Bot nomi] botiman.</b>
+<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan botman.</b>
 
 <b>Botning funksiyalari:</b>
 1. <b>/about</b> - Bot haqida to'liq ma'lumot va yaratuvchilar haqida.
@@ -89,7 +89,7 @@ async def kanalga_obuna(message: Message):
 async def help_commands(message: Message):
     await message.answer("""<b>👋 Salom!</b>
 
-<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan [Bot nomi] botiman. Quyidagi funksiyalarni taqdim etaman:</b>
+<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan botman. Quyidagi funksiyalarni taqdim etaman:</b>
 
 1. <b>/start</b> - Botni ishga tushiradi va siz bilan salomlashadi.
 2. <b>/help</b> - Botning qanday ishlashini tushuntiruvchi yordam xabari.
@@ -106,6 +106,7 @@ async def help_commands(message: Message):
 <b>Botni ishlatganingiz uchun rahmat! 🎉</b>
 """, parse_mode='html')
 
+
 @dp.message(Command("about"))
 async def about_commands(message: Message):
     await message.answer(
@@ -113,15 +114,10 @@ async def about_commands(message: Message):
 
 <b>👋 Salom!</b>
 
-<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan [Bot nomi] botiman. Quyidagi ma'lumotlarni taqdim etaman:</b>
-
-<b>Bot Yaratuvchilari:</b>
-<b>Yaratuvchi:</b> Nurbek Uktamov\n
-<b>Tajriba:</b> Backend dasturchi, Django bo'yicha mutaxassis
-<b>Maqsad:</b> Sizga matnni ovozga aylantirish va boshqa funksiyalarni taqdim etish.
+<b>Men SifatDev IT Akademiyasi tomonidan yaratilgan botman. Quyidagi ma'lumotlarni taqdim etaman:</b>
 
 <b>Bot Haqida:</b>
-<b>Maqsad:</b> [Bot nomi] bot sizning matnlaringizni ovozli xabarlarga aylantiradi. Har qanday matnni yuborganingizda, bot uni ovozga aylantiradi va sizga ovozli xabar sifatida yuboradi.\n
+<b>Maqsad:</b> Bot sizning matnlaringizni ovozli xabarlarga aylantiradi. Har qanday matnni yuborganingizda, bot uni ovozga aylantiradi va sizga ovozli xabar sifatida yuboradi.\n
 <b>Texnologiyalar:</b> Bot Python dasturlash tili yordamida yaratildi va <b>aiogram</b> kutubxonasi, <b>gTTS</b> (Google Text-to-Speech) kabi texnologiyalarni ishlatadi.\n
 <b>Qanday Ishlaydi:</b> Siz matn yuborganingizda, bot uni ovozga aylantiradi va ovozli xabar sifatida qaytaradi.
 
